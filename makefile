@@ -6,9 +6,9 @@ LIBS=-lusb-1.0
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-test1: $(OBJ)
+test: $(OBJ)
 	gcc -o $@ $^ $(LIBS)
 
 .PHONY: clean
 clean:
-	rm -f *.o *~ test1
+	rm -f *.o *~ test
