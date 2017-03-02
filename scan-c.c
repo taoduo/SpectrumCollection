@@ -20,15 +20,15 @@ void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec);
 
 int main(int argc, char *argv[]) {
 	printf("Start\n");
-	
-	if (-1 == GPIOExport(POUT) || -1 == GPIOExport(PIN))
-		printf("Export Option Failed\n");
-
-	if (-1 == GPIODirection(POUT, OUT) || -1 == GPIODirection(PIN, IN))
-		printf("Direction Option Failed\n");
-
 	fflush(stdout);
-		doScan();
+	if(!smpl_DevDetect()) {
+		if(!smpl_FindTheHID()) {
+			printf("Spectroscope not Found\n");
+			return 1;
+		}
+	}
+	printf("Spectroscope Found\n");
+	fflush(stdout);
 	return 0;
 }
 
