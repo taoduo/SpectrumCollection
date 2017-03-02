@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
 		printf("Device not found\n");
 		return 1;
 	}
-	printf("%S\n", devs->manufacturer_string);
+	printf("%i\n", devs->interface_number);
 	return 0;
 }
 
