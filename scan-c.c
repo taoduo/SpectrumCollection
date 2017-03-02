@@ -5,31 +5,18 @@
 #include <time.h>
 #include "hidapi.h"
 
-#define MAX_STRING 256
-
-
-// static void doScan();
-// void readWavelength(double * WaveLengthArray);
-// void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec);
+const size_t MAX_STRING = 256;
+const unsigned short PRODUCT_ID = 0x0001;
+const unsigned short VENDOR_ID = 0x20E2;	// ASEQ Instruments vendor ID
 
 int main(int argc, char *argv[]) {
-	const unsigned int PRODUCT_ID=0x0001;
-  const unsigned int VENDOR_ID = 0x20E2;	// ASEQ Instruments vendor ID
-	struct hid_device_info *devs = hid_enumerate(VENDOR_ID, PRODUCT_ID);
-
-	if (devs == NULL) {
-		printf("Device not found\n");
-		return 1;
-	}
-	char *device_path = malloc((strlen(devs->path) + 1) * sizeof(char));
-	hid_device *dev = hid_open_path(device_path);
+	hid_device *dev = hid_open(VENDOR_ID, PRODUCT_ID, NULL);
 	if (dev == NULL) {
 		printf("Device open failed\n");
 		return 2;
 	}
 	wchar_t test_str[MAX_STRING];
 	hid_get_serial_number_string(dev, test_str, (size_t) MAX_STRING);
-
 	printf("%S\n", test_str);
 	return 0;
 }
