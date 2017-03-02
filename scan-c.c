@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 	// save the path. Assuming there is only one spectrometer
 	char *device_path = malloc((strlen(devs->path) + 1) * sizeof(char));
 	strcpy(device_path, devs->path);
-
+	printf("%s\n", device_path);
 	hid_device *dev = hid_open_path(device_path);
 	if (dev == NULL) {
 		printf("Device open failed\n");
