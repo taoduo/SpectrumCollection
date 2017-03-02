@@ -5,18 +5,25 @@
 #include <time.h>
 #include "hidapi.h"
 
-const size_t MAX_STRING = 256;
+const size_t MAX_STR = 256;
 const unsigned short PRODUCT_ID = 0x0001;
 const unsigned short VENDOR_ID = 0x20E2;	// ASEQ Instruments vendor ID
 
 int main(int argc, char *argv[]) {
+	if (hid_init() != 0) {
+		printf("Error\n");
+	}
 	// get the devices
 	struct hid_device_info *devs = hid_enumerate(VENDOR_ID, PRODUCT_ID);
 	if (devs == NULL) {
 		printf("Device not found\n");
 		return 1;
 	}
-	printf("%i\n", devs->interface_number);
+
+	wchar_t wstr[MAX_STR];
+	hid_device *handle = hid_open(VENDOR_ID, PRODUCT_ID, NULL);
+	hid_get_product_string(handle, wstr, MAX_STR);
+	wprintf(L"Product String: %s\n", wstr);
 	return 0;
 }
 
