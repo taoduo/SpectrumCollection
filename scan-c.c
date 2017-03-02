@@ -10,13 +10,24 @@ const unsigned short PRODUCT_ID = 0x0001;
 const unsigned short VENDOR_ID = 0x20E2;	// ASEQ Instruments vendor ID
 
 int main(int argc, char *argv[]) {
-	hid_device *dev = hid_open(VENDOR_ID, PRODUCT_ID, NULL);
+	// get the devices
+	struct hid_device_info *devs = hid_enumerate(VENDOR_ID, PRODUCT_ID);
+	if (devs == NULL) {
+		printf("Device not found\n");
+		return 1;
+	}
+	// save the path. Assuming there is only one spectrometer
+	char *device_path = malloc((strlen(devs->path) + 1) * sizeof(char));
+	strcpy(device_path, devs->path);
+
+	hid_device *dev = hid_open_path(device_path);
 	if (dev == NULL) {
 		printf("Device open failed\n");
 		return 2;
 	}
 	wchar_t test_str[MAX_STRING];
 	hid_get_serial_number_string(dev, test_str, (size_t) MAX_STRING);
+
 	printf("%S\n", test_str);
 	return 0;
 }
