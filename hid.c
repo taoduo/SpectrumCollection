@@ -904,8 +904,9 @@ hid_device * HID_API_EXPORT hid_open_path(const char *path)
 						/* OPEN HERE */
 						res = libusb_open(usb_dev, &dev->device_handle);
 						if (res < 0) {
-							if (res == LIBUSB_ERROR_NO_DEVICE) {
-								printf("libusb not device?!");
+							if (res == LIBUSB_ERROR_ACCESS) {
+								printf("error get\n");
+								fflush(stdout);
 							}
 							LOG("can't open device\n");
 							free(dev_path);
