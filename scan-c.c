@@ -16,10 +16,7 @@ int main(int argc, char *argv[]) {
 		printf("Device not found\n");
 		return 1;
 	}
-	if (devs->next != NULL) {
-		printf("there is another device\n");
-	}
-	printf("%S\n", devs->serial_number);
+	printf("%i\n", devs->vendor_id);
 	return 0;
 }
 
