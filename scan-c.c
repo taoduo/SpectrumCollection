@@ -5,19 +5,37 @@
 #include <time.h>
 #include "hidapi.h"
 
-const size_t MAX_STR = 256;
-const unsigned short PRODUCT_ID = 0x0001;
-const unsigned short VENDOR_ID = 0x20E2;	// ASEQ Instruments vendor ID
+#define OUTPUT_REPORT_BYTE_LENGTH 9
+#define INPUT_REPORT_BYTE_LENGTH 64
+#define MAX_STR 256
+#define PRODUCT_ID 0x0001
+#define VENDOR_ID 0x20E2	// ASEQ Instruments vendor ID
 
 int main(int argc, char *argv[]) {
+	int res; // response state holder
+
+	// prepare the command to init the device
+	unsigned char cmd[10]; // the length of the command is 10
+	memset(cmd, 0, 10); // init the command to all 0
+	cmd[1]=0x03; // set the command
+	cmd[0]=0; // some boilerplate stuff
+	cmd[9]=15;
+
 	// open the device, assuming there is only one spectrometer
-	hid_device *dev = hid_open(VENDOR_ID, PRODUCT_ID, NULL);
-	if (dev == NULL) {
+	hid_device *spectrometer = hid_open(VENDOR_ID, PRODUCT_ID, NULL);
+	if (spectrometer == NULL) {
 		printf("Device open failed\n");
 		return 1;
 	}
-	// init the device
-	// ...
+
+	// actually deliver the command
+	res = hid_write(spectrometer, cmd, OUTPUT_REPORT_BYTE_LENGTH);
+	if(res < 0) {
+		printf("Unable to write report\n");
+	}
+
+	// close the device
+	hid_close(spectrometer);
 	return 0;
 }
 
