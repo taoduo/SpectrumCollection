@@ -21,9 +21,13 @@ int main(int argc, char *argv[]) {
 	}
 
 	wchar_t wstr[MAX_STR];
-	hid_device *handle = hid_open(VENDOR_ID, PRODUCT_ID, NULL);
-	hid_get_product_string(handle, wstr, MAX_STR);
-	wprintf(L"Product String: %s\n", wstr);
+	hid_device *dev = hid_open(VENDOR_ID, PRODUCT_ID, NULL);
+	if (dev == NULL) {
+		printf("Device open failed\n");
+		return 1;
+	}
+	hid_get_serial_number_string(dev, wstr, MAX_STR);
+	wprintf(L"serial: %s\n", wstr);
 	return 0;
 }
 
