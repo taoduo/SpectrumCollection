@@ -19,17 +19,17 @@ int main(int argc, char *argv[]) {
 		printf("Device not found\n");
 		return 1;
 	}
-
-	wchar_t wstr[MAX_STR];
+	// open the device, assuming there is only one spectrometer
 	hid_device *dev = hid_open(VENDOR_ID, PRODUCT_ID, NULL);
 	if (dev == NULL) {
 		printf("Device open failed\n");
 		return 1;
 	}
-	hid_get_serial_number_string(dev, wstr, MAX_STR);
-	wprintf(L"serial: %s\n", wstr);
+	// init the device
+	// ...
 	return 0;
 }
+
 
 
 // static void doScan() {
