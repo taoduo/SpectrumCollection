@@ -55,10 +55,10 @@ static void doScan() {
 	sprintf(filename, "./spectra/%u.csv", (unsigned)time(NULL));
 	printf("Saving file %s\n", filename);
 	fflush(stdout);
-		int q;
-		for(q = 0; q < 3646; q++) {
-				printf("%lf,%hd\n", WavelengthArray[q], rawSpec[q]);
-		}
+	int q;
+	for(q = 0; q < 3646; q++) {
+			printf("%f,%d\n", WavelengthArray[q], rawSpec[q]);
+	}
 
 //	FILE * fp = fopen(filename, "w" );
 //	if(fp != NULL) {
@@ -128,13 +128,11 @@ void readWavelength(double * WaveLengthArray){
 	printf("C1= %f\n",C1);
 
 	//end of reading calibration coefficients
-	for(i=0;i<3653;i++) {
+	for(i=0;i<3653;i++)
 		WavelengthArray[i]=A1*i*i+B1*i+C1;
-		printf("%f ", WavelengthArray[i]);
-	}
 }
 
-void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) {
+void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 21, 1, 0
 	smpl_resetAddress();
 
 	bool Trigger=0;
