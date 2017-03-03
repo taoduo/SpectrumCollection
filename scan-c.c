@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 	// read the report
 	res = hid_read_timeout(spectrometer, input, INPUT_REPORT_BYTE_LENGTH, 1 * 1000);
 	if(res <= 0) {
-  	printf("Unable to read report\n");
+  	printf("Unable to read report:%d\n", res);
 		return 2;
   } else {
 		printf("Read Successful\n");
