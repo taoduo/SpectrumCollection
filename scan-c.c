@@ -32,6 +32,8 @@ int main(int argc, char *argv[]) {
 	res = hid_write(spectrometer, cmd, OUTPUT_REPORT_BYTE_LENGTH);
 	if(res < 0) {
 		printf("Unable to write report\n");
+	} else {
+		printf("Writing Successful\n");
 	}
 
 	// close the device
