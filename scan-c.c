@@ -22,10 +22,6 @@ int main(int argc, char *argv[]) {
 
 	wchar_t wstr[MAX_STR];
 	hid_device *handle = hid_open(VENDOR_ID, PRODUCT_ID, NULL);
-	if (handle == NULL) {
-		printf("can not open\n");
-		return 0;
-	}
 	hid_get_product_string(handle, wstr, MAX_STR);
 	wprintf(L"Product String: %s\n", wstr);
 	return 0;
