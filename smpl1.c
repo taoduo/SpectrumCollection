@@ -213,7 +213,8 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 										WriteReport();
 										ReadReport();
 								}
-								for (int i = 0; i < 100; i++) {
+								int i;
+								for (i = 0; i < 100; i++) {
 									printf("test:%d\n", InputReport[i]);
 								}
 								int ByteNumber;
