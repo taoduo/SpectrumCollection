@@ -46,7 +46,7 @@ static void doScan() {
 	fflush(stdout);
 	signed short rawSpec[4096];
 	memset(rawSpec, 0,4096);
-	readSpec(21,1,0,rawSpec);
+	readSpec(21,2,1,rawSpec);
 	printf("Save Scan\n");
 	fflush(stdout);
 
@@ -148,7 +148,7 @@ void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 21, 
 	cmd[2]=ExpN;		//low
 	cmd[7]=ExpN>>8;	//high
 	cmd[3]=NScans;	//nmbScans
-	cmd[4]=Blank;		//blanc scans number
+	cmd[4]=Blank;		//blank scans number
 	cmd[5]=1;
 	if(Trigger==0)
 		cmd[6]=0;
@@ -173,10 +173,10 @@ void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 21, 
 
 	//read data
 	smpl_resetAddress();
-		int i;
+	int i;
 	for(i=1;i<=NScans;i++)
 	{
-		smpl_GetSpectra(rawSpec, 1,0, 3652, Fast, 0, 33, 3685);
+		smpl_GetSpectra(rawSpec, 1, 0, 3652, Fast, 0, 33, 3685);
 
 		/*OutputReport1[1]=9;//move address
 			OutputReport1[2]=0x01;
