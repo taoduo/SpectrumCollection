@@ -173,17 +173,16 @@ void smpl_ReadAndWriteToDevice(unsigned char *InputReport1, unsigned char * Outp
 		}
 }
 
-int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb, unsigned short startPix, unsigned short endPix, unsigned char Fast, unsigned char test1, unsigned short tot_startPix, unsigned short tot_endPix)
+int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
+								unsigned short startPix, unsigned short endPix, unsigned char Fast,
+								unsigned char test1, unsigned short tot_startPix, unsigned short tot_endPix)
 {
 		unsigned short tmp1;
 		unsigned short tmp2 = 0;
 		signed short InputSpec_loc[4096];
-		int RLn;
-		int devd;
+		int RLn = 32;
+		int devd = 0;
 		int cnt1;
-
-		RLn=32;
-
 
 		startPix+=tot_startPix;
 		endPix+=tot_startPix;
@@ -193,7 +192,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb, unsigned sh
 				{
 						OutputReport[1]=4;//read
 						OutputReport[3]=SpecNmb;
-						OutputReport[4]=0;//read every pixel
+						OutputReport[4]=1;//read every pixel
 						int k1;
 						for(k1=0; k1<=115; k1++)
 						{
@@ -268,8 +267,6 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb, unsigned sh
 				}
 				//end of transmission to *InputSpec1
 		}
-
-
 		return devd;
 }
 

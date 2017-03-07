@@ -135,8 +135,8 @@ void readWavelength(double * WaveLengthArray){
 void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 21, 1, 0
 	smpl_resetAddress();
 
-	bool Trigger=0;
-	bool KeepTrigger=0;
+	bool Trigger=1;
+	bool KeepTrigger=1;
 	bool Fast=0;
 
 	//send command to get spectra to memory
