@@ -46,7 +46,7 @@ static void doScan() {
 	fflush(stdout);
 	signed short rawSpec[4096];
 	memset(rawSpec, 0,4096);
-	readSpec(21,2,1,rawSpec);
+	readSpec(21,1,0,rawSpec);
 	printf("Save Scan\n");
 	fflush(stdout);
 
@@ -135,8 +135,8 @@ void readWavelength(double * WaveLengthArray){
 void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 21, 1, 0
 	smpl_resetAddress();
 
-	bool Trigger=1;
-	bool KeepTrigger=1;
+	bool Trigger=0;
+	bool KeepTrigger=0;
 	bool Fast=0;
 
 	//send command to get spectra to memory

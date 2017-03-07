@@ -192,7 +192,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 				{
 						OutputReport[1]=4;//read
 						OutputReport[3]=SpecNmb;
-						OutputReport[4]=1;//read every pixel
+						OutputReport[4]=0;//read every pixel
 						int k1;
 						for(k1=0; k1<=115; k1++)
 						{
@@ -213,6 +213,9 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 										WriteReport();
 										ReadReport();
 								}
+								for (int i = 0; i < 100; i++) {
+									printf("test:%d\n", InputReport[i]);
+								}
 								int ByteNumber;
 								for (ByteNumber=0; ByteNumber <= 31; ByteNumber++)
 								{
@@ -229,15 +232,17 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 				}
 				//transmission to *InputSpec1
 
-				/* JDS
-				   for(k1=0;k1<=115;k1++)
-				   {
-				   for (ByteNumber=0; ByteNumber <= 31; ByteNumber++)
-				   {
-				   cnt1=k1*RLn+ByteNumber;
-				   InputSpec_loc[cnt1]=InputSpec_loc[cnt1]*1.05;
-				   }
-				   }*/
+				// JDS
+					// int k1;
+				  //  for(k1=0;k1<=115;k1++)
+				  //  {
+					// 	 int ByteNumber;
+				  //  for (ByteNumber=0; ByteNumber <= 31; ByteNumber++)
+				  //  {
+				  //  cnt1=k1*RLn+ByteNumber;
+				  //  InputSpec_loc[cnt1]=InputSpec_loc[cnt1]*1.05;
+				  //  }
+				  //  }
 
 				devd=0;
 				//			devd=InputSpec_loc[3687]+InputSpec_loc[3688]+InputSpec_loc[3689]+InputSpec_loc[3690]+InputSpec_loc[3691]+InputSpec_loc[3692]+InputSpec_loc[3693]+InputSpec_loc[3694];
