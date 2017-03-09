@@ -193,7 +193,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 				{
 						OutputReport[1]=4;//read
 						OutputReport[3]=SpecNmb;
-						OutputReport[4]=1;//read every pixel
+						OutputReport[4]=2;//read every pixel
 						int k1;
 						// read 116 times
 						for(k1=0; k1<=115; k1++)
