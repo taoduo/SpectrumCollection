@@ -200,7 +200,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 						{
 								if(k1==0)
 								{
-										OutputReport[2]=3;//start ping-pong, used to be 1
+										OutputReport[2]=1;//start ping-pong, used to be 1
 								}
 								if(k1==115)
 								{
