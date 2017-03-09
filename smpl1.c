@@ -200,7 +200,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 						{
 								if(k1==0)
 								{
-										OutputReport[2]=0;//start ping-pong
+										OutputReport[2]=3;//start ping-pong
 								}
 								if(k1==115)
 								{
@@ -229,6 +229,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 								// test:62
 								// test:139
 								// test:62
+								// translate to InputSpec_loc
 								int ByteNumber;
 								for (ByteNumber=0; ByteNumber <= 31; ByteNumber++)
 								{
