@@ -63,7 +63,7 @@ bool smpl_FindTheHID()
 }
 
 #define OutputReportByteLength 9
-#define InputReportByteLength 64
+#define InputReportByteLength 99
 void WriteReport()
 {
 		OutputReport[0]=0;
