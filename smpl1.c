@@ -275,7 +275,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 						for (ByteNumber=0; ByteNumber <= 31; ByteNumber++)
 						{
 								cnt1=k1*RLn+ByteNumber;
-								if(InputSpec_loc[cnt1]>16300 && false)
+								if(InputSpec_loc[cnt1]>16300)
 								{
 										if((cnt1>=startPix)&(cnt1<=endPix)) InputSpec1[cnt1-startPix]=16383-devd;
 								}
