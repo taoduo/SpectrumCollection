@@ -200,7 +200,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 						{
 								if(k1==0)
 								{
-										OutputReport[2]=1;//start ping-pong, used to be 1
+										OutputReport[2]=0;//start ping-pong, used to be 1
 								}
 								if(k1==115)
 								{
@@ -208,7 +208,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 								}
 								if((k1>=1)&(k1<=114))
 								{
-										OutputReport[2]=2;//normal reading, used to be 0
+										OutputReport[2]=4;//normal reading, used to be 0
 								}
 								if (DeviceDetected==true)
 								{
