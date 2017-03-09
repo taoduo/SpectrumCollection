@@ -216,10 +216,10 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 										ReadReport();
 								}
 								printf("---k1:%d---\n", k1);
-								// int i;
-								// for (i = 0; i < 100; i++) {
-								// 	printf("%d\n", InputReport[i]);
-								// }
+								int i;
+								for (i = 0; i < 100; i++) {
+									printf("%d\n", InputReport[i]);
+								}
 
 								// example input:
 								// test:0
