@@ -200,7 +200,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 						{
 								if(k1==0)
 								{
-										OutputReport[2]=3;//start ping-pong
+										OutputReport[2]=3;//start ping-pong, used to be 1
 								}
 								if(k1==115)
 								{
@@ -208,7 +208,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 								}
 								if((k1>=1)&(k1<=114))
 								{
-										OutputReport[2]=1;//normal reading
+										OutputReport[2]=1;//normal reading, used to be 0
 								}
 								if (DeviceDetected==true)
 								{
@@ -216,10 +216,10 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 										ReadReport();
 								}
 								printf("---k1:%d---\n", k1);
-								int i;
-								for (i = 0; i < 100; i++) {
-									printf("%d\n", InputReport[i]);
-								}
+								// int i;
+								// for (i = 0; i < 100; i++) {
+								// 	printf("%d\n", InputReport[i]);
+								// }
 
 								// example input:
 								// test:0
@@ -241,6 +241,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 										}
 										tmp1=tmp1|tmp2;
 										InputSpec_loc[cnt1]=0x3FFF-tmp1;//16383 temporal line
+										printf("specLoc:%d\n", InputSpec_loc[cnt1]);
 								}
 						}
 				}
