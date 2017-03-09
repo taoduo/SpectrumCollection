@@ -193,7 +193,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 				{
 						OutputReport[1]=4;//read
 						OutputReport[3]=SpecNmb;
-						OutputReport[4]=0;//read every pixel
+						OutputReport[4]=1;//read every pixel
 						int k1;
 						// read 116 times
 						for(k1=0; k1<=115; k1++)
@@ -235,10 +235,10 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 								{
 										cnt1=k1*RLn+ByteNumber;
 										tmp1=((unsigned short)(InputReport[ByteNumber*2+1]))&0x00ff;
-										// if(InputReport[ByteNumber*2+2]<=0x3F)
-										// {
+										if(InputReport[ByteNumber*2+2]<=0x3F)
+										{
 												tmp2=(((unsigned short)(InputReport[ByteNumber*2+2]))<<8)&0x3f00;
-										// }
+										}
 										tmp1=tmp1|tmp2;
 										InputSpec_loc[cnt1]=0x3FFF-tmp1;//16383 temporal line
 										printf("specLoc[%d]:%d\n", cnt1, InputSpec_loc[cnt1]);
