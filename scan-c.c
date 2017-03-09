@@ -59,7 +59,7 @@ static void doScan() {
 	for(q = 0; q < 3646; q++) {
 			printf("{%f,%d},", WavelengthArray[q], rawSpec[q]);
 	}
-
+	fflush(stdout);
 //	FILE * fp = fopen(filename, "w" );
 //	if(fp != NULL) {
 //
