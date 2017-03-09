@@ -186,6 +186,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 
 		startPix+=tot_startPix;
 		endPix+=tot_startPix;
+
 		if(Fast==false)//get all pixels in the range
 		{
 				if((startPix<64)&(endPix>=3616))//get full spectra
@@ -194,6 +195,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 						OutputReport[3]=SpecNmb;
 						OutputReport[4]=0;//read every pixel
 						int k1;
+						// read 116 times
 						for(k1=0; k1<=115; k1++)
 						{
 								if(k1==0)
@@ -213,10 +215,20 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 										WriteReport();
 										ReadReport();
 								}
+								printf("---k1:%d---\n", k1);
 								int i;
 								for (i = 0; i < 100; i++) {
-									printf("test:%d\n", InputReport[i]);
+									printf("%d\n", InputReport[i]);
 								}
+
+								// example input:
+								// test:0
+								// test:172
+								// test:62
+								// test:176
+								// test:62
+								// test:139
+								// test:62
 								int ByteNumber;
 								for (ByteNumber=0; ByteNumber <= 31; ByteNumber++)
 								{
