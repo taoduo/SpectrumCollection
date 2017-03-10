@@ -176,7 +176,7 @@ void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 21, 
 	int i;
 	for(i=1;i<=NScans;i++)
 	{
-		smpl_GetSpectra(rawSpec, 1, 0, 3652, Fast, 0, 33, 3685);
+		smpl_GetSpectra(rawSpec, 0, 0, 3652, Fast, 0, 33, 3685);
 
 		/*OutputReport1[1]=9;//move address
 			OutputReport1[2]=0x01;

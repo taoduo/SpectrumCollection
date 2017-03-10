@@ -63,7 +63,7 @@ bool smpl_FindTheHID()
 }
 
 #define OutputReportByteLength 9
-#define InputReportByteLength 99
+#define InputReportByteLength 64
 void WriteReport()
 {
 		OutputReport[0]=0;
@@ -169,7 +169,6 @@ void smpl_ReadAndWriteToDevice(unsigned char *InputReport1, unsigned char * Outp
 						t2=InputReport[k1];
 						InputReport1[k1]=t2;
 				}
-
 		}
 }
 
