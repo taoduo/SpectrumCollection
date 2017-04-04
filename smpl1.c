@@ -241,7 +241,8 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 										}
 										tmp1=tmp1|tmp2;
 										InputSpec_loc[cnt1]=0x3FFF-tmp1;//16383 temporal line
-										printf("specLoc[%d]:%d\n", cnt1, InputSpec_loc[cnt1]);
+										printf("in1:%d,in2:%d,specLoc[%d]:%d\n", InputReport[ByteNumber*2+1], InputReport[ByteNumber*2+2], 
+											cnt1, InputSpec_loc[cnt1]);
 								}
 						}
 				}
