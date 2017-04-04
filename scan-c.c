@@ -46,7 +46,7 @@ static void doScan() {
 	fflush(stdout);
 	signed short rawSpec[4096];
 	memset(rawSpec, 0,4096);
-	readSpec(21,1,0,rawSpec);
+	readSpec(5,1,0,rawSpec);
 	printf("Save Scan\n");
 	fflush(stdout);
 
@@ -146,7 +146,7 @@ void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 21, 
 	memset(cmd, 0, 10);
 	cmd[1]=1;
 	cmd[2]=ExpN;		//low
-	cmd[7]=ExpN>>8;	//high
+	// cmd[7]=ExpN>>8;	//high
 	cmd[3]=NScans;	//nmbScans
 	cmd[4]=Blank;		//blank scans number
 	cmd[5]=1;
@@ -163,7 +163,7 @@ void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 21, 
 	//check if data is already in memory
 	sleep((int)(ExpN*2.375*(NScans*(Blank+1))) / 1000);
 
-	memset(cmd,0,10); //reuse the command array
+	// memset(cmd,0,10); //reuse the command array
 
 	//This will wait until the spectroscope says the data has been collected
 	cmd[1]=2;//get status

@@ -200,7 +200,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 						{
 								if(k1==0)
 								{
-										OutputReport[2]=1;//start ping-pong, used to be 1
+										OutputReport[2]=1;//start ping-pong
 								}
 								if(k1==115)
 								{
@@ -208,7 +208,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 								}
 								if((k1>=1)&(k1<=114))
 								{
-										OutputReport[2]=0;//normal reading, used to be 0
+										OutputReport[2]=0;//normal reading
 								}
 								if (DeviceDetected==true)
 								{
@@ -307,6 +307,9 @@ void smpl_resetAddress() {
 		unsigned char cmd[10];
 		memset(cmd, 0, 10);
 		cmd[1]=0x03;
+		cmd[2]=0x05;
+		cmd[3]=0x01;
+		cmd[5]=0x01;
 		smpl_ReadAndWriteToDevice(NULL,cmd,1);
 }
 
