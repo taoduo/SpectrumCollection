@@ -31,8 +31,8 @@ static void doScan() {
 			return;
 		}
 	}
-		printf("Spectroscope Found\n");
-		fflush(stdout);
+	printf("Spectroscope Found\n");
+	fflush(stdout);
 
 	smpl_reset();
 	printf("Wavelength\n");
@@ -55,11 +55,11 @@ static void doScan() {
 	sprintf(filename, "./spectra/%u.csv", (unsigned)time(NULL));
 	printf("Saving file %s\n", filename);
 	fflush(stdout);
-	int q;
-	for(q = 0; q < 3646; q++) {
-			printf("{%f,%d},", WavelengthArray[q], rawSpec[q]);
-	}
-	fflush(stdout);
+	// int q;
+	// for(q = 0; q < 3646; q++) {
+	// 		printf("{%f,%d},", WavelengthArray[q], rawSpec[q]);
+	// }
+	// fflush(stdout);
 //	FILE * fp = fopen(filename, "w" );
 //	if(fp != NULL) {
 //
@@ -176,7 +176,7 @@ void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 21, 
 	int i;
 	for(i=1;i<=NScans;i++)
 	{
-		smpl_GetSpectra(rawSpec, 10, 0, 3652, Fast, 0, 33, 3685);
+		smpl_GetSpectra(rawSpec, 1, 0, 3652, Fast, 0, 33, 3685);
 
 		/*OutputReport1[1]=9;//move address
 			OutputReport1[2]=0x01;

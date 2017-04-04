@@ -190,16 +190,17 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 		{
 				if((startPix<64)&(endPix>=3616))//get full spectra
 				{
-						OutputReport[1]=4;//read
-						OutputReport[3]=SpecNmb;
-						OutputReport[4]=0;//read every pixel
+						OutputReport[1] = 4;//read
+						OutputReport[3] = SpecNmb;
+						OutputReport[4] = 0;//read every pixel
+						OutputReport[5] = 1;
 						int k1;
 						// read 116 times
 						for(k1=0; k1<=115; k1++)
 						{
 								if(k1==0)
 								{
-										OutputReport[2]=0;//start ping-pong, used to be 1
+										OutputReport[2]=1;//start ping-pong, used to be 1
 								}
 								if(k1==115)
 								{
@@ -207,18 +208,18 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 								}
 								if((k1>=1)&(k1<=114))
 								{
-										OutputReport[2]=1;//normal reading, used to be 0
+										OutputReport[2]=0;//normal reading, used to be 0
 								}
 								if (DeviceDetected==true)
 								{
 										WriteReport();
 										ReadReport();
 								}
-								printf("---k1:%d---\n", k1);
-								int i;
-								for (i = 0; i < 100; i++) {
-									printf("%d\n", InputReport[i]);
-								}
+								// printf("---k1:%d---\n", k1);
+								// int i;
+								// for (i = 0; i < 100; i++) {
+								// 	printf("%d\n", InputReport[i]);
+								// }
 
 								// example input:
 								// test:0
@@ -298,14 +299,13 @@ void smpl_reset() {
 		/*reset, initialization*/
 		unsigned char cmd[10];
 		memset(cmd, 0, 10);
-		cmd[1]=0xF1;
+		cmd[1]=0xF1; // cmd[0]
 		smpl_ReadAndWriteToDevice(NULL,cmd,1);
 }
 
 void smpl_resetAddress() {
 		unsigned char cmd[10];
 		memset(cmd, 0, 10);
-
 		cmd[1]=0x03;
 		smpl_ReadAndWriteToDevice(NULL,cmd,1);
 }
