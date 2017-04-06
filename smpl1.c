@@ -101,7 +101,12 @@ void ReadReport()
 		}
 		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, 1*1000);
 		if(res <= 0) {
+				printf("read error");
 				// error
+		}
+		int i = 0;
+		for (i = 0; i < InputReportByteLength; i++) {
+			printf("InputReport[%d]:%d ", i, InputReport[i]);
 		}
 		//Temp to make the hid api respond like windows
 		memmove(&InputReport[1], InputReport, InputReportByteLength );
