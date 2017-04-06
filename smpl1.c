@@ -100,8 +100,8 @@ void ReadReport()
 				return;
 		}
 		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, 1*1000);
-		if(res <= 0) {
-				printf("read error");
+		if (res <= 0) {
+				printf("read error!!!\n");
 				// error
 		}
 		int i = 0;
