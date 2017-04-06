@@ -82,32 +82,31 @@ void readWavelength(double * WaveLengthArray){
 	unsigned char response[70];
 	unsigned char	ReadArray[8192];
 
-	memset(response, 0 , 70);
-	memset(ReadArray, 0 , 8192);
+	memset(response, 0, 70);
+	memset(ReadArray, 0, 8192);
 
-	int BytesRd=80;
-	int AddressFLASH=0;
+	int BytesRd = 800;
+	int AddressFLASH = 0;
 	int readCycle;
 	/*reading itself*/
 
 	//calibration coefficients
-	if((BytesRd-64*(int)(BytesRd/64))==0)
-		readCycle=(int)(BytesRd/64)-1;
+	if ((BytesRd-64 * (int)(BytesRd/64))==0)
+		readCycle = (int)(BytesRd/64)-1;
 	else
-		readCycle=(int)(BytesRd/64);
+		readCycle = (int)(BytesRd/64);
 	int i;
-	for(i=0;i<=readCycle;i++)
-	{
-		int addr=AddressFLASH+i*64;
-		cmd[1]=0xA1;
-		cmd[2]=(char)((addr)>>16);
-		cmd[3]=(char)((addr)>>8);
-		cmd[4]=(char)(addr);
+	for(i = 0; i <= readCycle; i++) {
+		int addr = AddressFLASH + i * 64;
+		cmd[1] = 0xA1;
+		cmd[2] = (char)((addr)>>16);
+		cmd[3] = (char)((addr)>>8);
+		cmd[4] = (char)(addr);
 
-		smpl_ReadAndWriteToDevice(response,cmd,0);
-				int j;
-		for(j=0;j<64;j++)
-			ReadArray[i*64+j]=response[j];
+		smpl_ReadAndWriteToDevice(response, cmd, 0);
+		int j;
+		for(j = 0; j < 64; j++)
+			ReadArray[i * 64 + j] = response[j];
 	}
 
 

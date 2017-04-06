@@ -196,50 +196,27 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 						OutputReport[5] = 1;
 						int k1;
 						// read 116 times
-						for(k1=0; k1<=115; k1++)
-						{
-								if(k1==0)
-								{
-									printf("start\n");
-										OutputReport[2]=1;//start ping-pong
+						for(k1 = 0; k1 <= 115; k1++) {
+								if(k1 == 0) {
+										OutputReport[2] = 1;//start ping-pong
 								}
-								if(k1==115)
-								{
-										printf("end\n");
-										OutputReport[2]=2;//end ping-pong
+								if(k1 == 115) {
+										OutputReport[2] = 2;//end ping-pong
 								}
-								if((k1>=1)&(k1<=114))
-								{
-									// printf("mid\n");
-									OutputReport[2]=0;//normal reading
+								if((k1 >= 1)&(k1 <= 114)) {
+									OutputReport[2] = 0;//normal reading
 								}
-								if (DeviceDetected==true)
-								{
+								if (DeviceDetected == true) {
 										WriteReport();
 										ReadReport();
 								}
-								// printf("---k1:%d---\n", k1);
-								// int i;
-								// for (i = 0; i < 100; i++) {
-								// 	printf("%d\n", InputReport[i]);
-								// }
 
-								// example input:
-								// test:0
-								// test:172
-								// test:62
-								// test:176
-								// test:62
-								// test:139
-								// test:62
 								// translate to InputSpec_loc
 								int ByteNumber;
-								for (ByteNumber=0; ByteNumber <= 31; ByteNumber++)
-								{
+								for (ByteNumber=0; ByteNumber <= 31; ByteNumber++) {
 										cnt1=k1*RLn+ByteNumber;
 										tmp1=((unsigned short)(InputReport[ByteNumber*2+1]))&0x00ff;
-										if(InputReport[ByteNumber*2+2]<=0x3F)
-										{
+										if(InputReport[ByteNumber*2+2]<=0x3F) {
 												tmp2=(((unsigned short)(InputReport[ByteNumber*2+2]))<<8)&0x3f00;
 										}
 										tmp1=tmp1|tmp2;
