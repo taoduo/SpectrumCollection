@@ -204,6 +204,7 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 										OutputReport[2] = 2;//end ping-pong
 								}
 								if((k1 >= 1)&(k1 <= 114)) {
+									printf("%d %d %d %d %d\n", OutputReport[1], OutputReport[2],  OutputReport[3],  OutputReport[4],  OutputReport[5]);
 									OutputReport[2] = 0;//normal reading
 								}
 								if (DeviceDetected == true) {
