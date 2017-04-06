@@ -46,7 +46,7 @@ static void doScan() {
 	fflush(stdout);
 	signed short rawSpec[4096];
 	memset(rawSpec, 0,4096);
-	readSpec(5,1,0,rawSpec);
+	readSpec(21,1,0,rawSpec);
 	printf("Save Scan\n");
 	fflush(stdout);
 
@@ -85,7 +85,7 @@ void readWavelength(double * WaveLengthArray){
 	memset(response, 0, 70);
 	memset(ReadArray, 0, 8192);
 
-	int BytesRd = 20480;
+	int BytesRd = 80;
 	int AddressFLASH = 0;
 	int readCycle;
 	/*reading itself*/
@@ -102,7 +102,6 @@ void readWavelength(double * WaveLengthArray){
 		cmd[2] = (char)((addr)>>16);
 		cmd[3] = (char)((addr)>>8);
 		cmd[4] = (char)(addr);
-
 		smpl_ReadAndWriteToDevice(response, cmd, 0);
 		int j;
 		for(j = 0; j < 64; j++)
