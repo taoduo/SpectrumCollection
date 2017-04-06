@@ -144,7 +144,7 @@ void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 5, 1
 	memset(cmd, 0, 10);
 	cmd[1]=1;
 	cmd[2]=ExpN;		//low
-	cmd[7]=ExpN>>8;	//high
+	// cmd[7]=ExpN>>8;	//high
 	cmd[3]=NScans;	//nmbScans
 	cmd[4]=Blank;		//blank scans number
 	cmd[5]=1;

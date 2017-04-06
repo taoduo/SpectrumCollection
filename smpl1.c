@@ -288,9 +288,6 @@ void smpl_resetAddress() {
 		unsigned char cmd[10];
 		memset(cmd, 0, 10);
 		cmd[1]=0x03;
-		cmd[2]=0x05;
-		cmd[3]=0x01;
-		cmd[5]=0x01;
 		smpl_ReadAndWriteToDevice(NULL,cmd,1);
 }
 
