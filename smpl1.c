@@ -101,7 +101,8 @@ void ReadReport()
 		}
 		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, 1*1000);
 		if (res <= 0) {
-				printf("read error!!!\n");
+			// we get read error when reading more than once
+				printf("READ ERR NO:%d\n", res);
 				// error
 		}
 		int i = 0;
