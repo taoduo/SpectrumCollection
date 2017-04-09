@@ -99,7 +99,7 @@ void ReadReport()
 				DeviceDetected = false;
 				return;
 		}
-		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, -1);
+		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, 2*1000);
 		if (res <= 0) {
 			// we get read error when reading more than once
 				printf("READ ERR NO:%d\n", res);
