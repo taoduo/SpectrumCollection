@@ -84,7 +84,8 @@ void readWavelength(double * WaveLengthArray){
 
 	memset(response, 0, 70);
 	memset(ReadArray, 0, 8192);
-
+	memset(cmd, 0, 10);
+	
 	int BytesRd = 80;
 	int AddressFLASH = 0;
 	int readCycle;
