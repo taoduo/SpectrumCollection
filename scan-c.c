@@ -80,28 +80,28 @@ static void doScan() {
 void readWavelength(double * WaveLengthArray){
 	unsigned char cmd[10];
 	unsigned char response[70];
-	unsigned char	ReadArray[8192];
+	unsigned char	ReadArray[20480];
 
 	memset(response, 0, 70);
-	memset(ReadArray, 0, 8192);
+	memset(ReadArray, 0, 20480);
 	memset(cmd, 0, 10);
-	
-	int BytesRd = 80;
+
+	int BytesRd = 20480;
 	int AddressFLASH = 0;
 	int readCycle;
 	/*reading itself*/
 
 	//calibration coefficients
-	if ((BytesRd-64 * (int)(BytesRd/64))==0)
-		readCycle = (int)(BytesRd/64)-1;
+	if ((BytesRd - 64 * (int)(BytesRd / 64)) == 0)
+		readCycle = (int)(BytesRd / 64) - 1;
 	else
-		readCycle = (int)(BytesRd/64);
+		readCycle = (int)(BytesRd / 64);
 	int i;
 	for(i = 0; i <= readCycle; i++) {
 		int addr = AddressFLASH + i * 64;
 		cmd[1] = 0xA1;
-		cmd[2] = (char)((addr)>>16);
-		cmd[3] = (char)((addr)>>8);
+		cmd[2] = (char)((addr) >> 16);
+		cmd[3] = (char)((addr) >> 8);
 		cmd[4] = (char)(addr);
 		smpl_ReadAndWriteToDevice(response, cmd, 0);
 		int j;
@@ -111,24 +111,24 @@ void readWavelength(double * WaveLengthArray){
 
 
 	char StringTmp[16];
-	for(i=0;i<16;i++)
-		StringTmp[i]=ReadArray[1+i];
-	double A1=atof(StringTmp);
-	for(i=0;i<16;i++)
-		StringTmp[i]=ReadArray[1+16+i];
-	double B1=atof(StringTmp);
-	for(i=0;i<16;i++)
-		StringTmp[i]=ReadArray[1+2*16+i];
-	double C1=atof(StringTmp);
+	for(i = 0; i < 16; i++)
+		StringTmp[i] = ReadArray[1 + i];
+	double A1 = atof(StringTmp);
+	for(i = 0; i < 16; i++)
+		StringTmp[i] = ReadArray[1 + 16 + i];
+	double B1 = atof(StringTmp);
+	for(i = 0; i < 16; i++)
+		StringTmp[i] = ReadArray[1 + 2 * 16 + i];
+	double C1 = atof(StringTmp);
 
 	//end of reading calibration coefficients
-	printf("A1= %f\n",A1);
-	printf("B1= %f\n",B1);
-	printf("C1= %f\n",C1);
+	printf("A1= %f\n", A1);
+	printf("B1= %f\n", B1);
+	printf("C1= %f\n", C1);
 
 	//end of reading calibration coefficients
-	for(i=0;i<3653;i++)
-		WavelengthArray[i]=A1*i*i+B1*i+C1;
+	for(i = 0; i < 3653; i++)
+		WavelengthArray[i] = A1 * i * i + B1 * i + C1;
 }
 
 void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 5, 1, 0
