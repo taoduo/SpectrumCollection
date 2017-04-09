@@ -77,21 +77,19 @@ void WriteReport()
 				DeviceDetected = false;
 				return;
 		}
+		printf("%d %d %d %d %d\n", OutputReport[1], OutputReport[2],  OutputReport[3],  OutputReport[4],  OutputReport[5]);
 		int res = hid_write(handle, OutputReport, OutputReportByteLength);
 		if(res < 0) {
 				// error
 				printf("Unable to write report\n");
 		}
-
 		hid_close(handle);
 
 		//memset( OutputReport, 0 , OutputReportByteLength);
 }
 
-void ReadReport()
-{
-		memset(InputReport,0,InputReportByteLength);
-
+void ReadReport() {
+		memset(InputReport, 0, InputReportByteLength);
 		hid_device *handle;
 		handle = hid_open_path(DevicePath);
 		if (!handle) {
@@ -99,9 +97,8 @@ void ReadReport()
 				DeviceDetected = false;
 				return;
 		}
-		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, 2*1000);
+		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, 1 * 1000);
 		if (res <= 0) {
-			// we get read error when reading more than once
 				printf("READ ERR NO:%d\n", res);
 				// error
 		}
@@ -205,11 +202,10 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 								if(k1 == 115) {
 										OutputReport[2] = 2;//end ping-pong
 								}
-								if((k1 >= 1)&(k1 <= 114)) {
+								if((k1 >= 1) & (k1 <= 114)) {
 									OutputReport[2] = 0;//normal reading
 								}
 								if (DeviceDetected == true) {
-										printf("%d %d %d %d %d\n", OutputReport[1], OutputReport[2],  OutputReport[3],  OutputReport[4],  OutputReport[5]);
 										WriteReport();
 										ReadReport();
 								}
@@ -224,8 +220,6 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 										}
 										tmp1=tmp1|tmp2;
 										InputSpec_loc[cnt1]=0x3FFF-tmp1;//16383 temporal line
-										printf("in1:%d,in2:%d,specLoc[%d]:%d\n", InputReport[ByteNumber*2+1], InputReport[ByteNumber*2+2],
-											cnt1, InputSpec_loc[cnt1]);
 								}
 						}
 				}
