@@ -83,7 +83,7 @@ void WriteReport()
 				// error
 				printf("Unable to write report\n");
 		}
-		hid_close(handle);
+		// hid_close(handle);
 
 		//memset( OutputReport, 0 , OutputReportByteLength);
 }
@@ -146,16 +146,14 @@ void smpl_ReadAndWriteToDevice(unsigned char *InputReport1, unsigned char * Outp
 
 		OutputReport=OutputReport1;
 
-		if(DevDet!=0)
-		{
-				DeviceDetected=false;
+		if(DevDet!=0) {
+				DeviceDetected = false;
 		}
 
-		if (DeviceDetected==false)
-				DeviceDetected=smpl_FindTheHID();
+		if (DeviceDetected == false)
+				DeviceDetected = smpl_FindTheHID();
 
-		if (DeviceDetected==true)
-		{
+		if (DeviceDetected == true) {
 				WriteReport();
 				ReadReport();
 		}
