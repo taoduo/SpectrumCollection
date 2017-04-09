@@ -77,7 +77,7 @@ void WriteReport()
 				DeviceDetected = false;
 				return;
 		}
-		// printf("%04x %04x %04x %04x %04x\n", OutputReport[1], OutputReport[2],  OutputReport[3],  OutputReport[4],  OutputReport[5]);
+		printf("%04x %04x %04x %04x %04x\n", OutputReport[1], OutputReport[2],  OutputReport[3],  OutputReport[4],  OutputReport[5]);
 		int res = hid_write(handle, OutputReport, OutputReportByteLength);
 		if(res < 0) {
 				// error
@@ -277,15 +277,15 @@ void smpl_reset() {
 		/*reset, initialization*/
 		unsigned char cmd[10];
 		memset(cmd, 0, 10);
-		cmd[1]=0xF1; // cmd[0]
-		smpl_ReadAndWriteToDevice(NULL,cmd,1);
+		cmd[1] = 0xF1; // cmd[0]
+		smpl_ReadAndWriteToDevice(NULL, cmd, 1);
 }
 
 void smpl_resetAddress() {
 		unsigned char cmd[10];
 		memset(cmd, 0, 10);
-		cmd[1]=0x03;
-		smpl_ReadAndWriteToDevice(NULL,cmd,1);
+		cmd[1] = 0x03;
+		smpl_ReadAndWriteToDevice(NULL, cmd, 1);
 }
 
 void smpl_shutdown() {

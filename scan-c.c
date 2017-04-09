@@ -133,46 +133,46 @@ void readWavelength(double * WaveLengthArray){
 void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 5, 1, 0
 	smpl_resetAddress();
 
-	bool Trigger=0;
-	bool KeepTrigger=0;
-	bool Fast=0;
+	bool Trigger = 0;
+	bool KeepTrigger = 0;
+	bool Fast = 0;
 
 	//send command to get spectra to memory
 	unsigned char cmd[10];
 	unsigned char recievedData[70];
 
 	memset(cmd, 0, 10);
-	cmd[1]=1;
-	cmd[2]=ExpN;		//low
+	cmd[1] = 1;
+	cmd[2] = ExpN;		//low
 	// cmd[7]=ExpN>>8;	//high
-	cmd[3]=NScans;	//nmbScans
-	cmd[4]=Blank;		//blank scans number
-	cmd[5]=1;
-	if(Trigger==0)
-		cmd[6]=0;
+	cmd[3] = NScans;	//nmbScans
+	cmd[4] = Blank;		//blank scans number
+	cmd[5] = 1;
+	if(Trigger == 0)
+		cmd[6] = 0;
 	else
-		if(KeepTrigger==0)
-			cmd[6]=1;
+		if(KeepTrigger == 0)
+			cmd[6] = 1;
 		else
-			cmd[6]=3;
+			cmd[6] = 3;
 
-	smpl_ReadAndWriteToDevice(NULL,cmd,0);
+	smpl_ReadAndWriteToDevice(NULL, cmd, 0);
 
 	//check if data is already in memory
-	sleep((int)(ExpN*2.375*(NScans*(Blank+1))) / 1000);
+	sleep((int)(ExpN * 5.375 * (NScans * (Blank + 1))) / 1000);
 
 	// memset(cmd,0,10); //reuse the command array
 
 	//This will wait until the spectroscope says the data has been collected
-	cmd[1]=2;//get status
-	smpl_ReadAndWriteToDevice(recievedData,cmd,0);
-	while(recievedData[3]!=0)
-		smpl_ReadAndWriteToDevice(recievedData,cmd,1);
+	cmd[1] = 2;//get status
+	smpl_ReadAndWriteToDevice(recievedData, cmd, 0);
+	while(recievedData[3] != 0)
+		smpl_ReadAndWriteToDevice(recievedData, cmd, 1);
 
 	//read data
 	smpl_resetAddress();
 	int i;
-	for(i=1;i<=NScans;i++)
+	for(i = 1; i <= NScans; i++)
 	{
 		smpl_GetSpectra(rawSpec, 1, 0, 3652, Fast, 0, 33, 3685);
 
