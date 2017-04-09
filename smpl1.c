@@ -97,7 +97,7 @@ void ReadReport() {
 				DeviceDetected = false;
 				return;
 		}
-		int res = hid_read_timeout(handle, InputReport, 80, 1 * 1000);
+		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, 1 * 1000);
 		if (res <= 0) {
 				printf("READ ERR NO:%d\n", res);
 				// error

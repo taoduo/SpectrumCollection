@@ -146,7 +146,7 @@ void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 5, 1
 
 	//send command to get spectra to memory
 	unsigned char cmd[10];
-	unsigned char recievedData[70];
+	unsigned char receivedData[70];
 
 	memset(cmd, 0, 10);
 	cmd[1] = 1;
@@ -172,9 +172,10 @@ void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 5, 1
 
 	//This will wait until the spectroscope says the data has been collected
 	cmd[1] = 2;//get status
-	smpl_ReadAndWriteToDevice(recievedData, cmd, 0);
-	while(recievedData[3] != 0)
-		smpl_ReadAndWriteToDevice(recievedData, cmd, 1);
+	smpl_ReadAndWriteToDevice(receivedData, cmd, 0);
+	printf("receivedData[3]:%d\n", receivedData[3]);
+	while(receivedData[3] != 0)
+		smpl_ReadAndWriteToDevice(receivedData, cmd, 1);
 
 	//read data
 	smpl_resetAddress();
