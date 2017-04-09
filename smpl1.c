@@ -247,10 +247,10 @@ int smpl_GetSpectra(signed short *InputSpec1, unsigned char SpecNmb,
 
 				//if(devd>16000)
 				//	devd=0;
-				for(k1=0; k1<=115; k1++)
+				for(k1 = 0; k1 <= 115; k1++)
 				{
 						int ByteNumber;
-						for (ByteNumber=0; ByteNumber <= 31; ByteNumber++)
+						for (ByteNumber = 0; ByteNumber <= 31; ByteNumber++)
 						{
 								cnt1=k1*RLn+ByteNumber;
 								if(InputSpec_loc[cnt1]>16300 && false)
@@ -285,6 +285,9 @@ void smpl_resetAddress() {
 		unsigned char cmd[10];
 		memset(cmd, 0, 10);
 		cmd[1] = 0x03;
+		cmd[2] = 0x05;
+		cmd[3] = 0x01;
+		cmd[5] = 0x01;
 		smpl_ReadAndWriteToDevice(NULL, cmd, 1);
 }
 
