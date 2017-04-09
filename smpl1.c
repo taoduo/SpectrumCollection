@@ -105,9 +105,9 @@ void ReadReport() {
 		//Temp to make the hid api respond like windows
 		memmove(&InputReport[1], InputReport, InputReportByteLength );
 		InputReport[0]=0;
-		if (res == 0) {
+		// if (res == 0) {
 			hid_close(handle);
-		}
+		// }
 }
 
 
