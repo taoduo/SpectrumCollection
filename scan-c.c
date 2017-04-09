@@ -46,7 +46,7 @@ static void doScan() {
 	fflush(stdout);
 	signed short rawSpec[4096];
 	memset(rawSpec, 0,4096);
-	readSpec(5,1,0,rawSpec);
+	readSpec(21,1,0,rawSpec);
 	printf("Save Scan\n");
 	fflush(stdout);
 

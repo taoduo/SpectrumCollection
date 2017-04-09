@@ -77,7 +77,7 @@ void WriteReport()
 				DeviceDetected = false;
 				return;
 		}
-		printf("%04x %04x %04x %04x %04x\n", OutputReport[1], OutputReport[2],  OutputReport[3],  OutputReport[4],  OutputReport[5]);
+		// printf("%04x %04x %04x %04x %04x\n", OutputReport[1], OutputReport[2],  OutputReport[3],  OutputReport[4],  OutputReport[5]);
 		int res = hid_write(handle, OutputReport, OutputReportByteLength);
 		if(res < 0) {
 				// error
