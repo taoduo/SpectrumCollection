@@ -83,7 +83,7 @@ void WriteReport()
 				// error
 				printf("Unable to write report\n");
 		}
-		if (res == 0) {
+		if (res >= 0) {
 				hid_close(handle);
 		}
 
