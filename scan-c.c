@@ -104,6 +104,11 @@ void readWavelength(double * WaveLengthArray){
 		cmd[3] = (char)((addr) >> 8);
 		cmd[4] = (char)(addr);
 		smpl_ReadAndWriteToDevice(response, cmd, 0);
+		if (i == 0) {
+			smpl_ReadAndWriteToDevice(response, cmd, 0);
+			smpl_ReadAndWriteToDevice(response, cmd, 0);
+			smpl_ReadAndWriteToDevice(response, cmd, 0);
+		}
 		int j;
 		for(j = 0; j < 64; j++)
 			ReadArray[i * 64 + j] = response[j];
