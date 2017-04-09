@@ -83,7 +83,7 @@ void WriteReport()
 				// error
 				printf("Unable to write report\n");
 		}
-		// hid_close(handle);
+		hid_close(handle);
 
 		//memset( OutputReport, 0 , OutputReportByteLength);
 }
