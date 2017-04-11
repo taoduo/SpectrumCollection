@@ -99,15 +99,6 @@ void ReadReport() {
 		}
 		hid_set_nonblocking(handle, 1);
 		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, 1 * 1000);
-		while (res == 0) {
-				res = hid_read(handle, InputReport, InputReportByteLength);
-				if (res == 0)
-					printf("waiting...\n");
-				if (res < 0)
-					printf("Unable to read()\n");
-				fflush(stdout);
-				sleep(1);
-		}
 		if (res <= 0) {
 				printf("READ ERR NO:%d\n", res);
 				// error
