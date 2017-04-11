@@ -83,7 +83,7 @@ void WriteReport()
 				// error
 				printf("Unable to write report\n");
 		} else {
-				printf("Bytes Written: %d", res);
+				printf("Bytes Written: %d\n", res);
 		}
 		hid_close(handle);
 
