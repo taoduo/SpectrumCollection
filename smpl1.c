@@ -97,6 +97,7 @@ void ReadReport() {
 				DeviceDetected = false;
 				return;
 		}
+		hid_set_nonblocking(handle, 1);
 		// int res = hid_read_timeou(handle, InputReport, InputReportByteLength, 1 * 1000);
 		int res = hid_read(handle, InputReport, InputReportByteLength);
 		if (res <= 0) {
