@@ -97,8 +97,8 @@ void ReadReport() {
 				DeviceDetected = false;
 				return;
 		}
+		hid_set_nonblocking(handle, 1);
 		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, 1 * 1000);
-		printf("here\n");
 		while (res == 0) {
 				res = hid_read(handle, InputReport, InputReportByteLength);
 				if (res == 0)
