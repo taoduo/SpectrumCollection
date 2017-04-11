@@ -84,7 +84,7 @@ void WriteReport()
 				printf("Unable to write report\n");
 		}
 		hid_close(handle);
-
+		hid_exit();
 		//memset( OutputReport, 0 , OutputReportByteLength);
 }
 
@@ -97,7 +97,7 @@ void ReadReport() {
 				DeviceDetected = false;
 				return;
 		}
-		int res = hid_read_timeout(handle, InputReport, 0x40, 1 * 1000);
+		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, 1 * 1000);
 		if (res <= 0) {
 				printf("READ ERR NO:%d\n", res);
 				// error
@@ -106,6 +106,7 @@ void ReadReport() {
 		memmove(&InputReport[1], InputReport, InputReportByteLength );
 		InputReport[0]=0;
 		hid_close(handle);
+		hid_exit();
 }
 
 
