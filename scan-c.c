@@ -38,7 +38,7 @@ static void doScan() {
 	printf("Wavelength\n");
 	fflush(stdout);
 	if(waveRead == false) {
-		readWavelength(WavelengthArray);
+		// readWavelength(WavelengthArray);
 		waveRead = true;
 		//Todo check for success here.
 	}
