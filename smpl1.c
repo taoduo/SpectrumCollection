@@ -102,7 +102,8 @@ void ReadReport() {
 				printf("READ ERR NO:%d\n", res);
 				// error
 		}
-		for (int i = 0; i < InputReportByteLength; i++) {
+		int i;
+		for (i = 0; i < InputReportByteLength; i++) {
 			printf("%04x ", InputReport[i]);
 		}
 		printf("\n");
