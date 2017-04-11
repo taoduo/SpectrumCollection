@@ -82,8 +82,6 @@ void WriteReport()
 		if (res < 0) {
 				// error
 				printf("Unable to write report\n");
-		} else {
-				printf("Bytes Written: %d\n", res);
 		}
 		hid_close(handle);
 
@@ -99,7 +97,8 @@ void ReadReport() {
 				DeviceDetected = false;
 				return;
 		}
-		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, 1 * 1000);
+		// int res = hid_read_timeou(handle, InputReport, InputReportByteLength, 1 * 1000);
+		int res = hid_read(handle, InputReport, InputReportByteLength);
 		if (res <= 0) {
 				printf("READ ERR NO:%d\n", res);
 				// error

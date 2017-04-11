@@ -173,7 +173,8 @@ void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 5, 1
 	//This will wait until the spectroscope says the data has been collected
 	cmd[1] = 2;//get status
 	smpl_ReadAndWriteToDevice(receivedData, cmd, 0);
-	printf("receivedData:%d %d %d\n", receivedData[1], receivedData[2], receivedData[3]);
+	// error is discovered here. It gets all 0 because of read error.
+	// printf("receivedData:%d %d %d\n", receivedData[1], receivedData[2], receivedData[3]);
 	while(receivedData[3] != 0)
 		smpl_ReadAndWriteToDevice(receivedData, cmd, 1);
 
