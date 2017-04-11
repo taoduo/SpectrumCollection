@@ -2,8 +2,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include <time.h>
+
 
 #define MAX_LOADSTRING 256
 
@@ -98,6 +98,14 @@ void ReadReport() {
 				return;
 		}
 		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, 1 * 1000);
+		while (res == 0) {
+				res = hid_read(handle, InputReport, InputReportByteLength);
+				if (res == 0)
+					printf("waiting...\n");
+				if (res < 0)
+					printf("Unable to read()\n");
+				sleep(1);
+		}
 		if (res <= 0) {
 				printf("READ ERR NO:%d\n", res);
 				// error
