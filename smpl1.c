@@ -104,6 +104,7 @@ void ReadReport() {
 					printf("waiting...\n");
 				if (res < 0)
 					printf("Unable to read()\n");
+				fflush(stdout);
 				sleep(1);
 		}
 		if (res <= 0) {
