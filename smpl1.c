@@ -97,12 +97,15 @@ void ReadReport() {
 				DeviceDetected = false;
 				return;
 		}
-		hid_set_nonblocking(handle, 1);
 		int res = hid_read_timeout(handle, InputReport, InputReportByteLength, 1 * 1000);
 		if (res <= 0) {
 				printf("READ ERR NO:%d\n", res);
 				// error
 		}
+		for (int i = 0; i < InputReportByteLength; i++) {
+			printf("%04x ", InputReport[i]);
+		}
+		printf("\n");
 		//Temp to make the hid api respond like windows
 		memmove(&InputReport[1], InputReport, InputReportByteLength );
 		InputReport[0]=0;

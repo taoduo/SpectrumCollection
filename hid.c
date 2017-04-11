@@ -1136,7 +1136,6 @@ int HID_API_EXPORT hid_read_timeout(hid_device *dev, unsigned char *data, size_t
 			}
 			else if (res == ETIMEDOUT) {
 				/* Timed out. */
-				printf("hidapi: read timeout");
 				bytes_read = 0;
 				break;
 			}
