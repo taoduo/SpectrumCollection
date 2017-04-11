@@ -47,7 +47,7 @@ bool smpl_FindTheHID()
 		if(devs != NULL) { //Just find the first spectrocope. Multiple scopes not currently supported
 				if(DevicePath != NULL)
 						free(DevicePath);
-				printf("vendor_id: %04x\n", devs->vendor_id);
+				printf("usage: %04x\n", devs->usage);
 				DevicePath = malloc((strlen(devs->path) + 1) * sizeof(char));
 				strcpy(DevicePath, devs->path);
 
