@@ -82,6 +82,8 @@ void WriteReport()
 		if (res < 0) {
 				// error
 				printf("Unable to write report\n");
+		} else {
+				printf("Bytes Written: %d", res);
 		}
 		hid_close(handle);
 
