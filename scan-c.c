@@ -38,7 +38,7 @@ static void doScan() {
 	printf("Wavelength\n");
 	fflush(stdout);
 	if(waveRead == false) {
-		// readWavelength(WavelengthArray);
+		readWavelength(WavelengthArray);
 		waveRead = true;
 		//Todo check for success here.
 	}
@@ -168,7 +168,7 @@ void readSpec(int ExpN, int NScans, int Blank, signed short * rawSpec) { // 5, 1
 	//check if data is already in memory
 	sleep((int)(ExpN * 2.375 * (NScans * (Blank + 1))) / 1000);
 
-	// memset(cmd,0,10); //reuse the command array
+	memset(cmd,0,10); //reuse the command array
 
 	//This will wait until the spectroscope says the data has been collected
 	cmd[1] = 2;//get status
