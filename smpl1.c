@@ -76,7 +76,6 @@ void WriteReport()
 				DeviceDetected = false;
 				return;
 		}
-		printf("%04x %04x %04x %04x %04x\n", OutputReport[1], OutputReport[2],  OutputReport[3],  OutputReport[4],  OutputReport[5]);
 		int res = hid_write(handle, OutputReport, OutputReportByteLength);
 		if (res < 0) {
 				// error
@@ -101,11 +100,6 @@ void ReadReport() {
 				printf("READ ERR NO:%d\n", res);
 				// error
 		}
-		int i;
-		for (i = 0; i < InputReportByteLength; i++) {
-			printf("%04x ", InputReport[i]);
-		}
-		printf("\n");
 		//Temp to make the hid api respond like windows
 		memmove(&InputReport[1], InputReport, InputReportByteLength );
 		InputReport[0]=0;
