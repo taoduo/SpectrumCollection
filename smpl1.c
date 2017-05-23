@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
+#include <limits.h>
 
 #define MAX_LOADSTRING 256
 
@@ -82,7 +82,7 @@ void WriteReport()
 				return;
 		}
 		printReport(OutputReport, 10);
-		printf("size:%lu\n", sizeof(long));
+		printf("size:%lu\n", CHAR_BIT);
 		int res = hid_write(handle, OutputReport, OutputReportByteLength);
 		if (res < 0) {
 				// error
