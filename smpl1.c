@@ -38,7 +38,7 @@ unsigned char DevInitNmb=1;
 void printReport(unsigned char report[], int length) {
 	int i = 0;
 	for (i = 0; i < length; i++) {
-		printf("%04x ", OutputReport[i]);
+		printf("%02x ", OutputReport[i]);
 	}
 	printf("\n");
 }
