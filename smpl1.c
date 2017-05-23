@@ -82,7 +82,7 @@ void WriteReport()
 				return;
 		}
 		printReport(OutputReport, 10);
-		printf("size:%lu\n", sizeof(OutputReport[0]));
+		printf("size:%lu\n", sizeof(long));
 		int res = hid_write(handle, OutputReport, OutputReportByteLength);
 		if (res < 0) {
 				// error
