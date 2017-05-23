@@ -68,7 +68,10 @@ void WriteReport()
 		OutputReport[0]=0;
 		OutputReport[9]=15;
 		//	OutputReport[65]=15;
-
+		for (int i = 0; i < 9; i++) {
+			printf("%d ", OutputReport[i]);
+		}
+		printf("\n");
 		hid_device *handle;
 		handle = hid_open_path(DevicePath);
 		if (!handle) {
@@ -141,7 +144,6 @@ void smpl_ReadAndWriteToDevice_new(unsigned char *InputReport1, unsigned char *O
 void smpl_ReadAndWriteToDevice(unsigned char *InputReport1, unsigned char * OutputReport1, int DevDet)
 {
 		unsigned char t2;
-
 		OutputReport=OutputReport1;
 
 		if(DevDet!=0) {
