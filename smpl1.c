@@ -35,7 +35,13 @@ unsigned char DevGeneralNmb;
 unsigned char DevInitNmb=1;
 
 
-
+void printReport(unsigned char report[], int length) {
+	int i = 0;
+	for (i = 0; i < length; i++) {
+		printf("%d ", OutputReport[i]);
+	}
+	printf("\n");
+}
 
 bool smpl_FindTheHID()
 {
@@ -68,10 +74,6 @@ void WriteReport()
 		OutputReport[0]=0;
 		OutputReport[9]=15;
 		//	OutputReport[65]=15;
-		for (int i = 0; i < 9; i++) {
-			printf("%d ", OutputReport[i]);
-		}
-		printf("\n");
 		hid_device *handle;
 		handle = hid_open_path(DevicePath);
 		if (!handle) {
@@ -79,6 +81,7 @@ void WriteReport()
 				DeviceDetected = false;
 				return;
 		}
+		printReport(OutputReport, 10);
 		int res = hid_write(handle, OutputReport, OutputReportByteLength);
 		if (res < 0) {
 				// error
